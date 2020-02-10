@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardImg, CardBody, Button, CardHeader, CardFooter, InputGroup, InputGroupAddon } from 'reactstrap';
 import { Control, LocalForm } from 'react-redux-form';
+import { Redirect } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import Like from './LikeComponent';
 
@@ -12,24 +13,16 @@ class CommentForm extends React.Component {
 	
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			 isModalOpen : false
-		}
-
-		this.toggleModal = this.toggleModal.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleSubmit(values) {
-		this.toggleModal();
-    	this.props.addComment(this.props.postId, "Joseph", values.comment);
-	}
-
-	toggleModal(){
-		this.setState({
-			isModalOpen: !this.state.isModalOpen
-		});
+		if (this.props.cId === -1){
+    		this.props.addComment(this.props.postId, "Joseph", values.comment);
+		} else {
+			console.log(this.props.cId)
+			this.props.addChildComment(this.props.postId, this.props.cId, "Joseph", values.comment);
+		}
 	}
 
 	render(){
@@ -39,7 +32,7 @@ class CommentForm extends React.Component {
 					<InputGroup>
 					<Control.text model=".comment" name="comment" id="comment"
 					validators={{minLength: minLength(1), maxLength: maxLength(140)}} 
-					placeholder="Add a comment..." className="form-control"/>
+					placeholder={this.props.authorName === -1 ? "Add a comment..." : "Reply to " + this.props.authorName} className="form-control"/>
 					<InputGroupAddon addonType="append">
 						<Button type="submit" color="primary">Post</Button>
 					</InputGroupAddon>
@@ -103,10 +96,10 @@ function RenderChildComments({postId, commentId, childcomments, changeComment2Li
 	}
 }
 
-function RenderComments({post, childcomments, comments, addComment, postId, changeComment1Like, changeComment2Like}) {
+function RenderComments({post, childcomments, comments, addComment, addChildComment, postId, changeComment1Like, changeComment2Like}) {
+	const [state, setState] = useState({selectcId: -1, authorName: -1});
 	if (comments && comments.length) {
 		return (
-			// <div className="col-12 col-md-4 mt-1 px-0 flex-row">
 				<Card>
 				<CardHeader>
 					<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
@@ -120,7 +113,7 @@ function RenderComments({post, childcomments, comments, addComment, postId, chan
 							<li key={comment.id}>
 								<img className="avatarImg" alt="avatar" src="/assets/images/default_avatar.png" height="30" weight="30"/> 
 								<span className="avatarName">{ comment.author }</span>
-								<div className="commentReply mt-2" style={{userSelect: 'none'}} onClick={e => console.log("Clicked")}>Reply</div>
+								<div className="commentReply mt-2" style={{userSelect: 'none'}} onClick={() => {setState({selectcId: comment.id, authorName: comment.author})}}>Reply</div>
 								<div className="row">
 									<div className="col-10">
 									<p style={{fontSize:"12px"}}>{ comment.comment } </p>
@@ -139,14 +132,12 @@ function RenderComments({post, childcomments, comments, addComment, postId, chan
 
 				</CardBody>
 				<CardFooter>
-					<CommentForm postId={postId} addComment={addComment}/>
+					<CommentForm postId={postId} addComment={addComment} cId={state.selectcId} authorName={state.authorName} addChildComment={addChildComment}/>
 				</CardFooter>
 				</Card>
-			// </div>
 		);
 	} else {
 		return (
-			<div className="col-12 col-md-4 mt-1 px-0">
 				<Card>
 				<CardHeader>
 					<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
@@ -155,10 +146,9 @@ function RenderComments({post, childcomments, comments, addComment, postId, chan
 				<CardBody>
 				</CardBody>
 				<CardFooter>
-					<CommentForm postId={postId} addComment={addComment}/>
+				<CommentForm postId={postId} addComment={addComment} cId={state.selectcId} authorName={state.authorName} addChildComment={addChildComment}/>
 				</CardFooter>
 				</Card>
-			</div>
 		);
 	}
 }
@@ -183,22 +173,24 @@ const PostDetail = (props) => {
 		);
 	}
 	else if (props.post != null){
-		
-	return (
-		<div className="container">
-			<div className="row mt-1 h-100">
-				<div className="col-12 col-md-8 mt-1 px-0 h-100">
-					<RenderPost post={props.post} changePostLike={props.changePostLike}/>
-				  </div>
-				  <div className="col-12 col-md-4 mt-1 px-0 d-flex h-100">
-					  <RenderComments post={props.post} comments={props.comments} 
-				  addComment={props.addComment} postId={props.post.id} changeComment1Like={props.changeComment1Like} changeComment2Like={props.changeComment2Like}
-				  childcomments={props.childcomments}/>
-				  </div>
+		return (
+			<div className="container">
+				<div className="row mt-1 h-100">
+					<div className="col-12 col-md-8 mt-1 px-0 d-flex h-100">
+						<RenderPost post={props.post} changePostLike={props.changePostLike}/>
+					</div>
+					<div className="col-12 col-md-4 mt-1 px-0 d-flex h-100">
+						<RenderComments post={props.post} comments={props.comments} 
+					addComment={props.addComment} addChildComment={props.addChildComment} postId={props.post.id} changeComment1Like={props.changeComment1Like} changeComment2Like={props.changeComment2Like}
+					childcomments={props.childcomments}/>
+					</div>
+				</div>
 			</div>
-		</div>
-	);
-	} 
+		);
+	} else {
+		
+		return (<Redirect to="/home" />);
+	}
 }
 
 

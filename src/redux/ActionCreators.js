@@ -10,6 +10,16 @@ export const addComment = (postId, author, comment) => ({
   }
 });
 
+export const addChildComment = (postId, commentId, author, comment) => ({
+  type: ActionTypes.ADD_CHILD_COMMENT,
+  payload: {
+    postId: postId,
+    author: author,
+    commentId: commentId,
+    comment: comment
+  }
+});
+
 export const changePostLike = (postId) => ({
   type: ActionTypes.CHANGE_POST_LIKE,
   payload: {

@@ -120,44 +120,4 @@ export const COMMENTS =
         author: "25 Cent",
         date: "2011-12-02T17:57:28.556094Z"
     },
-    {
-        id: 15,
-        postId: 3,
-        comment: "Imagine all the eatables, living in conFusion!",
-        liked: false,
-        author: "John Lemon",
-        date: "2012-10-16T17:57:28.556094Z"
-    },
-    {
-        id: 16,
-        postId: 3,
-        comment: "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-        liked: true,
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
-    },
-    {
-        id: 17,
-        postId: 3,
-        comment: "Eat it, just eat it!",
-        liked: true,
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
-    },
-    {
-        id: 18,
-        postId: 3,
-        comment: "Ultimate, Reaching for the stars!",
-        liked: false,
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-    },
-    {
-        id: 19,
-        postId: 3,
-        comment: "It's your birthday, we're gonna party!",
-        liked: true,
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
-    }
 ]
