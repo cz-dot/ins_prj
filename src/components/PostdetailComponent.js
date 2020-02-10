@@ -80,7 +80,7 @@ function RenderPost({post, changePostLike}) {
 	if (post != null) {
 		return (
 			<React.Fragment>
-				<div className="col-12 col-md-8 m-1">
+				<div className="col-12 col-md-8 mt-1 px-0">
 					<Card>
 						<CardHeader>
 							<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
@@ -107,15 +107,25 @@ function RenderPost({post, changePostLike}) {
 function RenderComments({comments, addComment, postId}) {
 	if (comments && comments.length) {
 		return (
-			<div className="col-12 col-md-3 m-1">
+			<div className="col-12 col-md-4 mt-1 px-0">
 				<Card>
 				<ul className="list-unstyled">
 					{ comments.map((comment) => {
-						const commentDate = new Date(comment.date);
+						// const commentDate = new Date(comment.date);
 						return (
-							<li key={comment.id}>
-								<p>{ comment.comment }</p>
-								<p>-- { comment.author }, { commentDate.toLocaleString('en-US', { month: 'short', day: '2-digit' }) } , { commentDate.getFullYear() }</p>
+							<li key={comment.id} style={{paddingLeft:"10px", paddingTop:"10px"}}>
+								<img className="avatarImg" alt="avatar" src="/assets/images/default_avatar.png" height="30" weight="30"/> 
+								<span className="avatarName">{ comment.author }</span>
+								<div className="row">
+									<div className="col-10">
+									<p style={{fontSize:"12px"}}>{ comment.comment } </p>
+									</div>
+									<div className="col-auto col-md-auto">
+										<Like changePostLike={()=>{}}/>	
+										
+									</div>
+
+								</div>
 							</li>
 						)
 					}) }
@@ -158,7 +168,7 @@ const PostDetail = (props) => {
 		
 	return (
 		<div className="container">
-			<div className="row">
+			<div className="row mt-1">
 				<RenderPost post={props.post} changePostLike={props.changePostLike}/>
 				<RenderComments comments={props.comments} 
 				  addComment={props.addComment} postId={props.post.id}/>

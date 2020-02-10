@@ -7,7 +7,7 @@ import Like from './LikeComponent';
 function RenderCardItem({post, changePostLike}) {
 	return(
 	<Card>
-		<CardHeader>
+		<CardHeader className="d-none d-md-block">
 			<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
 			<p className="avatarName">{post.author}</p>
 		</CardHeader>
@@ -26,7 +26,7 @@ function RenderCardItem({post, changePostLike}) {
 function RenderCard({changePostLike, item, isLoading, errMess}) {
 	const cards = item.posts.map((post) => {
 		return (
-			<div key={post.id} className="col-12 col-md-12 m-1">
+			<div key={post.id} className="col-12 col-md-12 mt-1 px-0">
 				<CardDeck>
 					<RenderCardItem post={post} changePostLike={changePostLike}/>
 				</CardDeck>
@@ -59,14 +59,14 @@ function Home(props){
 	return (
 	<div className="container">
       <div className="row align-items-start">
-			<div className="col-12 col-md-8 m-1">
+			<div className="col-12 col-md-8 mt-1 px-0">
 				<RenderCard changePostLike={props.changePostLike} item={props.post} isLoading={props.postsLoading} errMess={props.postsErrMess}  />
 			</div>
 
-			<div className="col-12 col-md-3 col-sm-none">
+			<div className="col-12 col-md-3 mt-1 d-none d-md-flex">
 				<Card className="border-0">
 					<CardBody>
-					<img className="avatarImg" src="/assets/images/avatar3.jpg" alt="Lee" height="50" weight="50"/> 
+					<img className="avatarImg" src="/assets/images/avatar3.jpg" alt="Joseph" height="50" weight="50"/> 
 					<p className="avatarName" style={{fontSize: 16}}>Joseph</p>
 					</CardBody>
 				</Card>
