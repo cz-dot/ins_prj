@@ -18,15 +18,61 @@
 }
 
 .avatarName {
-  /* text-align:center; */
   font-size: 12px;
   font-weight: bold;
   display:inline-block;
   padding: 0px 0 0 10px;
 }
 
+.commentReply {
+  color: rgb(125, 125, 125);
+  font-size: 12px;
+  font-weight: bold;
+  float: right;
+  padding: 0px 0 0 10px;
+}
+
+.heart-right {
+  float: right;
+}
+
 .navbar-dark {
   background-color: rgb(255, 255, 255);
   padding: 50px 0px 50px 0px;
   border-bottom: 1px ridge;
+}
+
+.commentName {
+  font-size: 12px;
+  font-weight: bold;
+  display:inline-block;
+  padding: 0 10px 0 0;
+}
+
+.comment-single-line{
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inherit;
+}
+
+@media only screen and (min-width : 481px) {
+  .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .flex-row > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+  }
+  .flex-row.row:after, 
+  .flex-row.row:before {
+      display: flex;
+  }
+}
+
+.scroll {
+  max-height: 80wh;
+  overflow-y: scroll;
 }

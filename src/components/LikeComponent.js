@@ -12,17 +12,23 @@ class RenderHeart extends Component {
     }
 
     render() {
-        return (
-            <>
-                {this.props.liked ? <span onClick={this.handleClick} className="fa fa-heart fa-lg" style={{color: 'red'}}></span> : <span onClick={this.handleClick} className="fa fa-heart-o fa-lg"></span>}
-            </>
-        );
+        if (this.props.liked && this.props.lg) {
+            return (<span onClick={this.handleClick} className="fa fa-heart fa-lg" style={{color: 'red'}}></span>);
+        }
+        else if (!this.props.liked && this.props.lg) {
+            return (<span onClick={this.handleClick} className="fa fa-heart-o fa-lg"></span>);
+        }
+        else if (this.props.liked && !this.props.lg) {
+            return (<span onClick={this.handleClick} className="fa fa-heart" style={{color: 'red'}}></span>);
+        } else {
+            return (<span onClick={this.handleClick} className="fa fa-heart-o"></span>);
+        }
     }
 }
 
 const Like = (props) => {
     return (
-        <RenderHeart liked={props.liked} changePostLike={props.changePostLike} postId={props.postId}/>
+        <RenderHeart liked={props.liked} changePostLike={props.changePostLike} postId={props.postId} lg={props.lg}/>
     );
 }
 

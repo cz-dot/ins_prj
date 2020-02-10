@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// import { createForms } from 'react-redux-form';
 import { Posts } from './posts';
 import { Comments } from './comments';
+import { ChildComments } from './childComments';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -10,9 +10,7 @@ export const ConfigureStore = () => {
     combineReducers({
       posts: Posts,
       comments: Comments,
-      // ...createForms({
-      //   feedback: InitialFeedback
-      // })
+      childComments: ChildComments
     }),
     applyMiddleware(thunk, logger)
   );

@@ -15,12 +15,12 @@ function RenderCardItem({post, changePostLike}) {
 			<CardImg src={post.image} alt={post.name} />
 			</Link>
 			<CardBody>
-				<Like liked={post.liked} changePostLike={changePostLike} postId={post.id}/>
+				<Like liked={post.liked} changePostLike={changePostLike} postId={post.id} lg={true}/>
 				<span className="fa fa-comment-o fa-lg mx-3"></span>
 				<span className="fa fa-paper-plane-o fa-lg"></span>
 				<br />
 				<br />
-				{post.name}
+				<p className="comment-single-line"> <span className="commentName">{post.author}</span> {post.name}</p>
 		</CardBody>
 	</Card>
 	);

@@ -24,6 +24,13 @@ export const changeComment1Like = (commentId) => ({
   }
 })
 
+export const changeComment2Like = (commentId) => ({
+  type: ActionTypes.CHANGE_COMMENT2_LIKE,
+  payload: {
+    commentId: commentId
+  }
+})
+
 export const fetchPosts = () => (dispatch) => {
   dispatch(postsLoading(true));
   dispatch(addPosts(POSTS));
