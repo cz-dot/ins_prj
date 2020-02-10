@@ -16,6 +16,9 @@ function RenderCardItem({post, changePostLike}) {
 			</Link>
 			<CardBody>
 				<Like liked={post.liked} changePostLike={changePostLike} postId={post.id}/>
+				<span className="fa fa-comment-o fa-lg mx-3"></span>
+				<span className="fa fa-paper-plane-o fa-lg"></span>
+				<br />
 				<br />
 				{post.name}
 		</CardBody>

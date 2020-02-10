@@ -13,9 +13,9 @@ class RenderHeart extends Component {
 
     render() {
         return (
-            <div onClick={this.handleClick}>
-                {this.props.liked ? <i className="fa fa-heart-o fa-lg"></i> : <i className="fa fa-heart fa-lg" style={{color: 'red'}}></i>}
-            </div>
+            <>
+                {this.props.liked ? <span onClick={this.handleClick} className="fa fa-heart fa-lg" style={{color: 'red'}}></span> : <span onClick={this.handleClick} className="fa fa-heart-o fa-lg"></span>}
+            </>
         );
     }
 }

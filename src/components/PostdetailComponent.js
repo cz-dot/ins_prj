@@ -88,7 +88,10 @@ function RenderPost({post, changePostLike}) {
 						</CardHeader>
 						<CardImg width="100%" src={post.image} alt={post.name} />
 						<CardBody>
-							<Like liked={post.liked} changePostLike={changePostLike} postId={post.id}/>
+							<Like liked={post.liked} changePostLike={changePostLike} postId={post.id}></Like>
+							<span className="fa fa-comment-o fa-lg mx-3"></span>
+							<span className="fa fa-paper-plane-o fa-lg"></span>
+							<br />
 							<br />
 							{post.name}
 						</CardBody>
@@ -104,16 +107,15 @@ function RenderPost({post, changePostLike}) {
 	}
 }
 
-function RenderComments({comments, addComment, postId}) {
+function RenderComments({comments, addComment, postId, changeComment1Like}) {
 	if (comments && comments.length) {
 		return (
 			<div className="col-12 col-md-4 mt-1 px-0">
 				<Card>
 				<ul className="list-unstyled">
 					{ comments.map((comment) => {
-						// const commentDate = new Date(comment.date);
 						return (
-							<li key={comment.id} style={{paddingLeft:"10px", paddingTop:"10px"}}>
+							<li key={comment.id} className="p-2">
 								<img className="avatarImg" alt="avatar" src="/assets/images/default_avatar.png" height="30" weight="30"/> 
 								<span className="avatarName">{ comment.author }</span>
 								<div className="row">
@@ -121,7 +123,7 @@ function RenderComments({comments, addComment, postId}) {
 									<p style={{fontSize:"12px"}}>{ comment.comment } </p>
 									</div>
 									<div className="col-auto col-md-auto">
-										<Like changePostLike={()=>{}}/>	
+										<Like changePostLike={changeComment1Like} liked={comment.liked} postId={comment.id}/>	
 										
 									</div>
 
@@ -137,7 +139,7 @@ function RenderComments({comments, addComment, postId}) {
 	} else {
 		return (
 			<div>	
-				<div className="col-12 col-md-5 m-1">
+				<div className="col-12 col-md-4 mt-1 px-0">
 					<CommentForm postId={postId} addComment={addComment}/>
 				</div>
 			</div>
@@ -171,7 +173,7 @@ const PostDetail = (props) => {
 			<div className="row mt-1">
 				<RenderPost post={props.post} changePostLike={props.changePostLike}/>
 				<RenderComments comments={props.comments} 
-				  addComment={props.addComment} postId={props.post.id}/>
+				  addComment={props.addComment} postId={props.post.id} changeComment1Like={props.changeComment1Like}/>
 			</div>
 		</div>
 	);

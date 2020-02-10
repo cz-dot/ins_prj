@@ -24,7 +24,7 @@ export const Posts = (state = {
           {...newState.posts[postId], liked: !newState.posts[postId].liked},
           ...newState.posts.slice(postId+1)
         ];
-    return newState
+      return newState
 
     default: 
       return state;

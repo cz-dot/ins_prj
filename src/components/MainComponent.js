@@ -3,12 +3,13 @@ import Header from './HeaderComponent';
 import Home from './HomeComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment, fetchPosts, changePostLike } from '../redux/ActionCreators';
+import { addComment, fetchPosts, changePostLike, changeComment1Like } from '../redux/ActionCreators';
 import PostDetail from './PostdetailComponent';
 
 const mapDispatchToProps = (dispatch) => ({
   addComment: (postId, author, comment) => dispatch(addComment(postId, author, comment)),
   changePostLike: (postId) => dispatch(changePostLike(postId)),
+  changeComment1Like: (commentId) => dispatch(changeComment1Like(commentId)),
   fetchPosts: () => {dispatch(fetchPosts())},
 })
 
@@ -43,7 +44,8 @@ class Main extends Component {
         errMess={this.props.posts.errMess}
         comments={this.props.comments.filter((comment) => comment.postId === parseInt(match.params.postId, 10))}
         addComment={this.props.addComment}
-        changePostLike={this.props.changePostLike}/>
+        changePostLike={this.props.changePostLike}
+        changeComment1Like={this.props.changeComment1Like}/>
       );
     }
 
