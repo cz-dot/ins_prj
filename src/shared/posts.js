@@ -6,7 +6,7 @@ export const POSTS =
             image: '/assets/images/post1.jpg',
             author: 'Derek',
             avatar: '/assets/images/avatar1.jpg', 
-            liked: 0
+            liked: true
         },
         {
             id: 1,
@@ -14,7 +14,7 @@ export const POSTS =
             image: '/assets/images/post2.jpg',
             author: 'Derek',
             avatar: '/assets/images/avatar1.jpg',
-            liked: 1
+            liked: false
         },
         {
             id: 2,
@@ -22,7 +22,7 @@ export const POSTS =
             image: '/assets/images/post3.jpg',
             author: 'Linda',
             avatar: '/assets/images/avatar2.jpg',
-            liked: 0
+            liked: true
         },
         {
             id: 3,
@@ -30,6 +30,6 @@ export const POSTS =
             image: '/assets/images/post4.jpg',
             author: 'Linda',
             avatar: '/assets/images/avatar2.jpg',
-            liked: 1
+            liked: false
         }
     ];

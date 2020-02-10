@@ -10,6 +10,13 @@ export const addComment = (postId, author, comment) => ({
   }
 });
 
+export const changePostLike = (postId) => ({
+  type: ActionTypes.CHANGE_POST_LIKE,
+  payload: {
+    postId: postId
+  }
+})
+
 export const fetchPosts = () => (dispatch) => {
   dispatch(postsLoading(true));
   dispatch(addPosts(POSTS));
