@@ -17,13 +17,6 @@
   margin: 5px 0 0 0;
 }
 
-.avatarName {
-  font-size: 12px;
-  font-weight: bold;
-  display:inline-block;
-  padding: 0px 0 0 10px;
-}
-
 .commentReply {
   color: rgb(125, 125, 125);
   font-size: 12px;
@@ -32,9 +25,6 @@
   padding: 0px 0 0 10px;
 }
 
-.heart-right {
-  float: right;
-}
 
 .navbar-dark {
   background-color: rgb(255, 255, 255);
@@ -57,7 +47,111 @@
   display: inherit;
 }
 
-@media only screen and (min-width : 481px) {
+.avatarName {
+  font-size: 12px;
+  font-weight: bold;
+  display:inline-block;
+  padding: 0px 0 0 10px;
+}
+
+@media (max-width: 575.98px) {
+  .commentReply {
+    display: inline;
+    float: none;
+  }
+
+  .heart-right {
+    display: inline;
+    float: none;
+    margin: 0 0 0 0;
+  }
+
+  .heart-right-child {
+    display: inline;
+    float: none;
+    margin: 0 0 0 -13px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  .scroll {
+    max-height: 496px;
+    height: 496px;
+    width: 576px;
+    max-width:576px;
+    overflow-y: scroll;
+  }
+
+  .commentReply {
+    display: inline;
+    float: none;
+  }
+  
+  .heart-right {
+    display: inline;
+    float: none;
+    margin: 0 0 0 0px;
+  }
+
+  .heart-right-child {
+    display: inline;
+    float: none;
+    margin: 0 0 0 -13px;
+  }
+ }
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  .scroll {
+    max-height: 310px;
+    height: 310px;
+    width: 280px;
+    max-width:280px;
+    overflow-y: scroll;
+  }
+
+  .commentReply {
+    display: inline;
+    float: none;
+  }
+  
+  .heart-right {
+    display: inline;
+    float: none;
+    margin: 0 0 0 -20px;
+  }
+
+  .heart-right-child {
+    display: inline;
+    float: none;
+    margin: 0 0 0 -33px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  .scroll {
+    max-height: 416px;
+    height: 416px;
+    width: 300px;
+    max-width: 300px;
+    overflow-y: scroll;
+  }
+ }
+
+@media (min-width: 1200px) { 
+  .scroll {
+    max-height: 496px;
+    height: 496px;
+    width: 378px;
+    max-width:378px;
+    overflow-y: scroll;
+  }
+
+  .heart-right {
+    float: right;
+  }
+ }
+
+@media only screen and (min-width : 768px) {
   .flex-row {
       display: flex;
       flex-wrap: wrap;
@@ -70,9 +164,12 @@
   .flex-row.row:before {
       display: flex;
   }
-}
 
-.scroll {
-  max-height: 496px;
-  overflow-y: scroll;
+  .mainName {
+    font-size: 16px;
+    font-weight: bold;
+    display:inline-block;
+    padding: 0px 0 0 10px;
+  }
+
 }

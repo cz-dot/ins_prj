@@ -82,7 +82,7 @@ function RenderChildComments({postId, commentId, childcomments, changeComment2Li
 								<div className="col-10">
 								<p style={{fontSize:"12px"}}>{ comment.comment } </p>
 								</div>
-								<div className="ml-auto heart-right">
+								<div className="ml-lg-auto ml-xl-auto heart-right-child">
 									<Like lg={false} changePostLike={changeComment2Like} liked={comment.liked} postId={comment.id}/>											
 								</div>
 							</div>
@@ -100,13 +100,12 @@ function RenderComments({post, childcomments, comments, addComment, addChildComm
 	const [state, setState] = useState({selectcId: -1, authorName: -1});
 	if (comments && comments.length) {
 		return (
-				<Card>
-				<CardHeader>
+				<Card className="w-100">
+				<CardHeader className="d-none d-md-block">
 					<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
 					<p className="avatarName">{post.author}</p>
 				</CardHeader>
 				<CardBody className="scroll">
-
 				<ul className="list-unstyled">
 					{ comments.map((comment) => {
 						return (
@@ -118,11 +117,13 @@ function RenderComments({post, childcomments, comments, addComment, addChildComm
 									<div className="col-10">
 									<p style={{fontSize:"12px"}}>{ comment.comment } </p>
 									</div>
-									<div className="col-auto col-md-auto">
+									{/* <div className="col-auto col-md-auto"> */}
+
+									<div className="ml-lg-auto ml-xl-auto heart-right mr-lg-4">
 										<Like lg={false} changePostLike={changeComment1Like} liked={comment.liked} postId={comment.id}/>											
 									</div>
 								</div>
-								<div className="row ml-3 mr-4 pr-2">
+								<div className="row ml-lg-3 mr-lg-4 ml-md-1 ml-sm-2 ml-2">
 									<RenderChildComments postId={postId} commentId={comment.id} childcomments={childcomments} changeComment2Like={changeComment2Like}/>
 								</div>
 							</li>
@@ -138,12 +139,15 @@ function RenderComments({post, childcomments, comments, addComment, addChildComm
 		);
 	} else {
 		return (
-				<Card>
-				<CardHeader>
+				<Card className="w-100">
+				<CardHeader className="d-none d-md-block">
 					<img className="avatarImg" src={post.avatar} alt={post.author} height="30" weight="30"/> 
 					<p className="avatarName">{post.author}</p>
 				</CardHeader>
-				<CardBody>
+				<CardBody className="scroll">
+					<div className="col-12 w-100">
+						Be the first person to comment
+					</div>
 				</CardBody>
 				<CardFooter>
 				<CommentForm postId={postId} addComment={addComment} cId={state.selectcId} authorName={state.authorName} addChildComment={addChildComment}/>
@@ -179,7 +183,7 @@ const PostDetail = (props) => {
 					<div className="col-12 col-md-8 mt-1 px-0 d-flex h-100">
 						<RenderPost post={props.post} changePostLike={props.changePostLike}/>
 					</div>
-					<div className="col-12 col-md-4 mt-1 px-0 d-flex h-100">
+					<div className="col-12 col-sm-12 col-md-4 mt-1 px-0 d-flex h-100">
 						<RenderComments post={props.post} comments={props.comments} 
 					addComment={props.addComment} addChildComment={props.addChildComment} postId={props.post.id} changeComment1Like={props.changeComment1Like} changeComment2Like={props.changeComment2Like}
 					childcomments={props.childcomments}/>

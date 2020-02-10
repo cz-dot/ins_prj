@@ -62,15 +62,15 @@ function Home(props){
 	return (
 	<div className="container">
       <div className="row align-items-start">
-			<div className="col-12 col-md-8 mt-1 px-0">
+			<div className="col-12 col-md-12 col-lg-8 col-xl-8 mt-1 px-0">
 				<RenderCard changePostLike={props.changePostLike} item={props.post} isLoading={props.postsLoading} errMess={props.postsErrMess}  />
 			</div>
 
-			<div className="col-12 col-md-3 mt-1 d-none d-md-flex">
+			<div className="col-12 col-md-3 mt-1 d-none d-lg-flex">
 				<Card className="border-0">
 					<CardBody>
-					<img className="avatarImg" src="/assets/images/avatar3.jpg" alt="Joseph" height="50" weight="50"/> 
-					<p className="avatarName" style={{fontSize: 16}}>Joseph</p>
+					<img className="avatarImg d-none d-lg-inline-block" src="/assets/images/avatar3.jpg" alt="Joseph" height="50" weight="50"/> 
+					<p className="mainName d-none d-lg-inline-block">Joseph</p>
 					</CardBody>
 				</Card>
 			</div>
